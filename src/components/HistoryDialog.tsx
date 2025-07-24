@@ -11,16 +11,18 @@ import { CourseCard, type CourseOutline } from "@/components/CourseCard";
 import { History } from "lucide-react";
 
 interface HistoryDialogProps {
-  history: CourseOutline[];
+  history?: CourseOutline[];
 }
 
 export function HistoryDialog({ history }: HistoryDialogProps) {
+  const historyCount = history?.length || 0;
+  
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm" className="gap-2">
           <History className="h-4 w-4" />
-          History ({history.length})
+          History ({historyCount})
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[80vh]">
@@ -28,7 +30,7 @@ export function HistoryDialog({ history }: HistoryDialogProps) {
           <DialogTitle>Course Generation History</DialogTitle>
         </DialogHeader>
         
-        {history.length > 0 ? (
+        {history && history.length > 0 ? (
           <ScrollArea className="h-[60vh] pr-4">
             <div className="space-y-4">
               {history.map((course) => (
