@@ -7,6 +7,8 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
+import { HistoryDialog } from "@/components/HistoryDialog";
+import { type CourseOutline } from "@/components/CourseCard";
 
 interface CourseHeaderProps {
   topic: string;
@@ -15,6 +17,7 @@ interface CourseHeaderProps {
   onDifficultyChange: (value: string) => void;
   onGenerateCourse: () => void;
   isGenerating?: boolean;
+  history: CourseOutline[];
 }
 
 export function CourseHeader({
@@ -23,18 +26,25 @@ export function CourseHeader({
   onTopicChange,
   onDifficultyChange,
   onGenerateCourse,
-  isGenerating = false
+  isGenerating = false,
+  history
 }: CourseHeaderProps) {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border shadow-soft">
       <div className="max-w-4xl mx-auto px-4 py-4">
-        <div className="text-center mb-4">
-          <h1 className="text-2xl font-bold text-foreground mb-1">
-            AutoCourse.AI
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Generate comprehensive courses on any topic with AI
-          </p>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex-1" />
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-foreground mb-1">
+              AutoCourse.AI
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Generate comprehensive courses on any topic with AI
+            </p>
+          </div>
+          <div className="flex-1 flex justify-end">
+            <HistoryDialog history={history} />
+          </div>
         </div>
         
         <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-1 lg:grid-cols-3 sm:gap-3">

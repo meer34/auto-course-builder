@@ -5,7 +5,8 @@ import { CourseCard, type CourseOutline } from "@/components/CourseCard";
 const Index = () => {
   const [topic, setTopic] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [courses, setCourses] = useState<CourseOutline[]>([]);
+  const [currentCourse, setCurrentCourse] = useState<CourseOutline | null>(null);
+  const [history, setHistory] = useState<CourseOutline[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleGenerateCourse = async () => {
@@ -50,7 +51,12 @@ const Index = () => {
       ]
     };
     
-    setCourses(prev => [newCourse, ...prev]);
+    // Add previous course to history if it exists
+    if (currentCourse) {
+      setHistory(prev => [currentCourse, ...prev]);
+    }
+    
+    setCurrentCourse(newCourse);
     setIsGenerating(false);
   };
 
@@ -63,25 +69,24 @@ const Index = () => {
         onDifficultyChange={setDifficulty}
         onGenerateCourse={handleGenerateCourse}
         isGenerating={isGenerating}
+        history={history}
       />
       
       {/* Content section with top padding to account for fixed header */}
       <div className="pt-[180px] pb-8">
         <div className="max-w-4xl mx-auto px-4">
-          {courses.length > 0 ? (
+          {currentCourse ? (
             <div className="space-y-6">
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-semibold text-foreground mb-2">
-                  Generated Course Outlines
+                  Generated Course Outline
                 </h2>
                 <p className="text-muted-foreground">
-                  Your AI-generated courses are ready for review
+                  Your AI-generated course is ready for review
                 </p>
               </div>
               
-              {courses.map((course) => (
-                <CourseCard key={course.id} course={course} />
-              ))}
+              <CourseCard course={currentCourse} />
             </div>
           ) : (
             <div className="text-center py-16">
