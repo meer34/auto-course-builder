@@ -27,19 +27,19 @@ export function CourseHeader({
 }: CourseHeaderProps) {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border shadow-soft">
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
+      <div className="max-w-4xl mx-auto px-4 py-4">
+        <div className="text-center mb-4">
+          <h1 className="text-2xl font-bold text-foreground mb-1">
             AutoCourse.AI
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Generate comprehensive courses on any topic with AI
           </p>
         </div>
         
-        <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-1 lg:grid-cols-3 sm:gap-4">
+        <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-1 lg:grid-cols-3 sm:gap-3">
           <div className="lg:col-span-1">
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-foreground mb-1">
               📘 Topic
             </label>
             <Input
@@ -51,7 +51,7 @@ export function CourseHeader({
           </div>
           
           <div className="lg:col-span-1">
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-foreground mb-1">
               🎯 Difficulty
             </label>
             <Select value={difficulty} onValueChange={onDifficultyChange}>

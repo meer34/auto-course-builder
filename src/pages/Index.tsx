@@ -66,7 +66,7 @@ const Index = () => {
       />
       
       {/* Content section with top padding to account for fixed header */}
-      <div className="pt-[280px] pb-8">
+      <div className="pt-[180px] pb-8">
         <div className="max-w-4xl mx-auto px-4">
           {courses.length > 0 ? (
             <div className="space-y-6">
