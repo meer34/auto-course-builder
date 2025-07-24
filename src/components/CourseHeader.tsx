@@ -18,6 +18,7 @@ interface CourseHeaderProps {
   onGenerateCourse: () => void;
   isGenerating?: boolean;
   history: CourseOutline[];
+  onSelectCourse: (course: CourseOutline) => void;
 }
 
 export function CourseHeader({
@@ -27,7 +28,8 @@ export function CourseHeader({
   onDifficultyChange,
   onGenerateCourse,
   isGenerating = false,
-  history
+  history,
+  onSelectCourse
 }: CourseHeaderProps) {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border shadow-soft">
@@ -43,7 +45,7 @@ export function CourseHeader({
             </p>
           </div>
           <div className="flex-1 flex justify-end">
-            <HistoryDialog history={history} />
+            <HistoryDialog history={history} onSelectCourse={onSelectCourse} />
           </div>
         </div>
         

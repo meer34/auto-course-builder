@@ -60,6 +60,14 @@ const Index = () => {
     setIsGenerating(false);
   };
 
+  const handleSelectCourse = (course: CourseOutline) => {
+    // Move current course to history if it exists
+    if (currentCourse) {
+      setHistory(prev => [currentCourse, ...prev]);
+    }
+    setCurrentCourse(course);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <CourseHeader
@@ -70,6 +78,7 @@ const Index = () => {
         onGenerateCourse={handleGenerateCourse}
         isGenerating={isGenerating}
         history={history}
+        onSelectCourse={handleSelectCourse}
       />
       
       {/* Content section with top padding to account for fixed header */}
